@@ -1,0 +1,61 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Farm to Basket Peaches",
+    "description": "Aggregates all farmstands across California that are selling peaches."
+  },
+  "servers": [
+    {
+      "url": "https://httpbin.org"
+    }
+  ],
+  "paths": {
+    "/peaches/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ],
+      "put": {
+        "tags": ["peaches"],
+        "summary": "Find an open stand",
+        "description": "This operation will source all open peach farm stands in the database.",
+        "responses": {
+          "400": {
+            "description": "Invalid id value"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      },
+      "get": {
+        "tags": ["peaches"],
+        "summary": "Show location and hours",
+        "description": "This operation will source the location and hours of farm stands and show which are open.",
+        "responses": {
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": []
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  }
+}
